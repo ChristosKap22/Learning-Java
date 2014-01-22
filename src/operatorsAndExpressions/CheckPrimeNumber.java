@@ -1,4 +1,4 @@
-package operators.and.expressions;
+package operatorsAndExpressions;
 
 import java.util.Scanner;
 

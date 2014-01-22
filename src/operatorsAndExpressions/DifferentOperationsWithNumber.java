@@ -1,4 +1,4 @@
-package operators.and.expressions;
+package operatorsAndExpressions;
 
 public class DifferentOperationsWithNumber {
 
