@@ -1,4 +1,4 @@
-package console.input.output;
+package consoleInputOutput;
 
 import java.util.Locale;
 import java.util.Scanner;

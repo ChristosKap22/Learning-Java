@@ -1,4 +1,4 @@
-package console.input.output;
+package consoleInputOutput;
 
 import java.util.Scanner;
 
