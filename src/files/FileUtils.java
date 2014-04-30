@@ -21,13 +21,16 @@ public class FileUtils {
 	
 	public static void WriteToFile(String input, String filePath) {
 		File file = new File(filePath);
+		OutputStream outputStream = null;
+		OutputStreamWriter writer = null;
+		BufferedWriter bufferedWriter = null;
+		
 		try {
-			OutputStream outputStream = new FileOutputStream(file);
-			OutputStreamWriter writer = new OutputStreamWriter(outputStream, "utf-8");
-			BufferedWriter bufferedWriter = new BufferedWriter(writer);
+			outputStream = new FileOutputStream(file);
+			writer = new OutputStreamWriter(outputStream, "utf-8");
+			bufferedWriter = new BufferedWriter(writer);
+			
 			bufferedWriter.write(input);
-
-			bufferedWriter.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -35,17 +38,27 @@ public class FileUtils {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				bufferedWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public static String ReadFromFile(String filePath) {
 		File file = new File(filePath);
+		InputStream inputStream = null;
+		InputStreamReader reader = null;
+		BufferedReader bufferedReader = null;
+		
 		StringBuilder resultBuilder = new StringBuilder();
 		
 		try {
-			InputStream inputStream = new FileInputStream(file);
-			InputStreamReader reader = new InputStreamReader(inputStream, "utf-8");
-			BufferedReader bufferedReader = new BufferedReader(reader);
+			inputStream = new FileInputStream(file);
+			reader = new InputStreamReader(inputStream, "utf-8");
+			bufferedReader = new BufferedReader(reader);
 			
 			String line = bufferedReader.readLine();
 			while (line != null) {
@@ -53,14 +66,18 @@ public class FileUtils {
 				line = bufferedReader.readLine();
 			}
 
-			bufferedReader.close();
-
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				bufferedReader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return resultBuilder.toString();
